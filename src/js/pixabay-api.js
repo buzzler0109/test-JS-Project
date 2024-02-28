@@ -1,20 +1,10 @@
 import axios from 'axios';
 
-export async function searchImg(userValue, userPage) {
-  const BASE_URL = 'https://pixabay.com/';
-  const END_POINT = '/api/';
+export async function booksCategory() {
+  const BASE_URL = 'https://books-backend.p.goit.global/books/';
+  const END_POINT = 'category-list';
   const url = BASE_URL + END_POINT;
 
-  const params = {
-    key: '42127236-8bfdbbfbeed8a2dadaca720e8',
-    q: `${userValue}`,
-    image_type: 'photo',
-    orientation: 'horizontal',
-    safesearch: 'true',
-    page: userPage,
-    per_page: 15,
-  };
-
-  const res = await axios.get(url, { params });
+  const res = await axios.get(url);
   return res.data;
 }
