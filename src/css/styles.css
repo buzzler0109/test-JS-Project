@@ -25,6 +25,26 @@ ol {
   list-style: none;
 }
 
+.sidebar {
+  max-width: 335px;
+  height: 228px;
+  overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  height: 114px;
+}
+
+.categories {
+  max-width: 307px;
+}
+
 .categories-item {
   font-weight: 400;
   font-size: 16px;
@@ -32,11 +52,22 @@ ol {
   letter-spacing: -0.02em;
   color: rgba(17, 17, 17, 0.6);
   margin-bottom: 24px;
+  transition: text-transform 3s ease;
 }
 
 .categories-item:hover,
 .categories-item:focus,
 .categories-item:active {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #4f2ee8;
+}
+
+.active {
   cursor: pointer;
   font-weight: 700;
   font-size: 16px;

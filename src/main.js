@@ -5,12 +5,16 @@ export const refs = {
   categories: document.querySelector('.categories'),
 };
 
-const data = await booksCategory();
-console.log(data);
-categoriesRender(data);
+async function onPageLoad() {
+  const data = await booksCategory();
+  console.log(data);
+  categoriesRender(data);
+}
+
+onPageLoad();
 
 refs.categories.addEventListener('click', e => {
   if (e.target === e.currentTarget) return;
   const liElem = e.target.closest('li');
-  liElem.classList.toggle('active');
+  liElem.classList.add('active');
 });
