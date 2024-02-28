@@ -7,14 +7,21 @@ export const refs = {
 
 async function onPageLoad() {
   const data = await booksCategory();
-  console.log(data);
   categoriesRender(data);
+  refs.categoriesItems = document.querySelectorAll('.categories-item');
+  refs.categories.addEventListener('click', onCategoriesClick);
 }
 
 onPageLoad();
 
-refs.categories.addEventListener('click', e => {
-  if (e.target === e.currentTarget) return;
-  const liElem = e.target.closest('li');
-  liElem.classList.add('active');
-});
+function onCategoriesClick(e) {
+  clickAddClass(e);
+}
+
+function clickAddClass(e) {
+  const target = e.target.closest('li');
+  if (!target || target === e.currentTarget) return;
+
+  refs.categoriesItems.forEach(elem => elem.classList.remove('active'));
+  target.classList.add('active');
+}
