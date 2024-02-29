@@ -1,14 +1,26 @@
-import { booksCategory } from './js/pixabay-api';
-import { categoriesRender } from './js/render-functions';
+import { booksCategory } from './js/books-api';
+import {
+  categoriesRender,
+  topBooksTemplate,
+  topBooksCategoriesRender,
+  clickAddClass,
+} from './js/render-functions';
+import { topBooks } from './js/books-api';
 
 export const refs = {
-  categories: document.querySelector('.categories'),
+  bestBooks: document.querySelector('.best-books-category'),
+  categories: document.querySelector('.sidebar-categories'),
+  allCategories: document.querySelector('.sidebar-all-categories'),
 };
 
 async function onPageLoad() {
   const data = await booksCategory();
+  const topBooksResponse = await topBooks();
   categoriesRender(data);
-  refs.categoriesItems = document.querySelectorAll('.categories-item');
+  topBooksCategoriesRender(topBooksResponse);
+
+  refs.categoriesItems = document.querySelectorAll('.sidebar-categories-item');
+  refs.allCategories.classList.add('sidebar-active');
   refs.categories.addEventListener('click', onCategoriesClick);
 }
 
@@ -16,12 +28,4 @@ onPageLoad();
 
 function onCategoriesClick(e) {
   clickAddClass(e);
-}
-
-function clickAddClass(e) {
-  const target = e.target.closest('li');
-  if (!target || target === e.currentTarget) return;
-
-  refs.categoriesItems.forEach(elem => elem.classList.remove('active'));
-  target.classList.add('active');
 }
